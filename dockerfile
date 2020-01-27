@@ -1,6 +1,6 @@
-FROM node:10.16.3-alpine
+FROM node:10-alpine
 
-ARG CLOUD_SDK_VERSION=264.0.0
+ARG CLOUD_SDK_VERSION=277.0.0
 ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
 
 RUN yarn global add firebase-tools typescript lerna forever && \
@@ -24,6 +24,7 @@ RUN apk --no-cache add \
     gcloud config set component_manager/disable_update_check true && \
     gcloud config set metrics/environment github_docker_image && \
     gcloud --version && \
+    gcloud components install kubectl -q && \
     gcloud components list
 
 VOLUME ["/root/.config"]
