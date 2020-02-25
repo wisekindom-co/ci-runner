@@ -1,6 +1,6 @@
 FROM node:10-alpine
 
-ARG CLOUD_SDK_VERSION=277.0.0
+ARG CLOUD_SDK_VERSION=281.0.0
 ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
 
 RUN yarn global add firebase-tools typescript lerna forever && \
@@ -8,6 +8,9 @@ RUN yarn global add firebase-tools typescript lerna forever && \
 
 ENV PATH /google-cloud-sdk/bin:$PATH
 RUN apk --no-cache add \
+    make \
+    gcc \
+    g++ \
     curl \
     python \
     py-crcmod \
